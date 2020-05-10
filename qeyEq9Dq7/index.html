@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>增量式PID公式的4点疑问和理解 | 煜平的blog</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://AlexChan2020.github.io/favicon.ico?v=1589104829671">
+<link rel="stylesheet" href="https://AlexChan2020.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+一开始见到PID计算公式时总会问“为什么是这样子的一道公式”，为了理解那几道公式，当时将其未简化前的公式活生生地算了一遍，现在想来，这样的演算过程固然有助于理解，但假如一开始就带着对疑问的答案已有一定抽象了解后再进行演算则会理解的更快！
+..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://AlexChan2020.github.io">
+        <img src="https://AlexChan2020.github.io/images/avatar.png?v=1589104829671" class="site-logo">
+        <h1 class="site-title">煜平的blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      见微知著，日拱一卒
+    </div>
+    <div class="site-footer">
+      更多交流，可关注微信公众号：一只白乌鸦 | <a class="rss" href="https://AlexChan2020.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">增量式PID公式的4点疑问和理解</h2>
+            <div class="post-date">2020-05-10</div>
+            
+            <div class="post-content" v-pre>
+              <p><img src="https://AlexChan2020.github.io/post-images/1589104505228.jpg" alt="" loading="lazy"><br>
+一开始见到PID计算公式时总会问“为什么是这样子的一道公式”，为了理解那几道公式，当时将其未简化前的公式活生生地算了一遍，现在想来，这样的演算过程固然有助于理解，但假如一开始就带着对疑问的答案已有一定抽象了解后再进行演算则会理解的更快！</p>
+<p>首先推荐白志刚的**《由入门到精通—吃透PID 2.0版》**看完一、二章之后，建议你先通过实践练习然后再去看书里接下来的其他章节，这样你对这本书的掌握会更加高效。</p>
+<p><strong>PID就是对输入偏差进行比例积分微分运算，然后将运算的叠加结果去控制执行机构。实践练习中，如何把这一原理转化为程序？为什么是用那几个error进行计算?</strong></p>
+<p>以下是我摘录的一段PID程序，我曾用其对智能车的速度进行闭环控制：<br>
+<em>P：Proportional  比例<br>
+I：Integrating 积分<br>
+D：Differentiation 微分<br>
+Pwm_value：输出Pwm暂空比的值<br>
+Current_error：当前偏差<br>
+last_error：上次偏差<br>
+prev_error：上上次偏差</em></p>
+<p><em><em>增量式PID计算公式： **<br>
+<em>P=Kp</em>(current_error﹣last_error)；<br>
+D=Kd</em>(current_error﹣2<em>last_error﹢prev_error)；<br>
+I=Ki</em>current_error；<br>
+PID_add=Pwm_value+P﹢I﹢D；</em></p>
+<p><em><strong>一、为什么是PID_add=Pwm_value+（P﹢I﹢D）而不是PID_add=P+I+D？</strong></em><br>
+<img src="https://AlexChan2020.github.io/post-images/1589104611031.jpg" alt="" loading="lazy"><br>
+如上图，有一个人前往目的地A，他用眼睛视觉传感器目测到距离目的地还有100m，即当前与目的地的偏差为100，他向双脚输出Δ=100J的能量，跑呀跑，10s之后，他又目测了一次，此时距离为40m，即current_error=40，他与10s前的偏差last_error=10对比，即current_error - last_error=-60，这是个负数，他意识到自己已经比较接近目的地，可以不用跑那么快，于是输出Δ=100+(-60)=40J的能量，40J的能量他刚好以4m/s的速度跑呀跑，10s之后，他发现已经到达目的点，此时current_error=0，大脑经过思考得出current_error—last_error=0 - 40=-40，两脚获得的能量Δ=40+(-40)=0，即他已经达到目的地，无需再跑。在刚才的叙述中，可知<strong>增量式P+I+D输出的是一个增量，将该增量与调节量相加后所得到值才是最终输出量，其反应的是之前的输出量是在当前的状态中是该增加还是该减少</strong>。</p>
+<p><strong><em>二、纯比例控制P=Kp</em>(current_error﹣last_error)，怎样理解﹙current_error﹣last_error ﹚？</strong>*<br>
+<img src="https://AlexChan2020.github.io/post-images/1589104637919.jpg" alt="" loading="lazy"><br>
+PID中纯比例控制就是把被控制量的偏差乘以一个系数作为调节器的输出，在增量式PID中，反映在程序上的，我们被控制量就是error，而实际上，例如在速度控制中error=目标速度﹣当前速度，所以<strong>明确目的：我们通过控制error趋近于0，最终使得当前速度趋近于目标速度</strong>。<br>
+如上图，函数经过时间Δt，由y1变化为y2时，问y增长的比例为多少？很显然：K=﹙y2-y1﹚/Δt；<br>
+<img src="https://AlexChan2020.github.io/post-images/1589104679669.jpg" alt="" loading="lazy"><br>
+以速度控制为例，若y为error，如上图，在时间t1到t2的过程中，我们可以得到输出控制量error变化的趋势为(current_error - last_error)/Δt。得到偏差的变化趋势后，乘以Kp使输出量与error相对变化。这个道理犹如模拟电子电路中，声音信号经过功放管放大输出的信号与输入信号相对应的线性变化。</p>
+<p><em><strong>三、引进微分控制？</strong></em><br>
+然而，通常情况下，我们的被控制量并非纯比例式地变化，如下图：<br>
+<img src="https://AlexChan2020.github.io/post-images/1589104697705.jpg" alt="" loading="lazy"><br>
+比例表示变化趋势，微分则表示变化趋势的变化率，映射到一个图像曲线中即为导数的变化！上图中若求曲线中x2至x1某点的斜率，当Δt足够小时，则可近似为(y2 - y1)／Δt ，可知x3到x1导数的变化为﹛(y3 - y2) -(y2 - y1)﹜／Δt ＝(y3 - 2<em>y2﹢y1)／Δt 。将不同时间的y1、y2、y3映射为prev_error、last_error、current_error；则error变化趋势的变化为﹛(current_error - last_error) - (last_error - prev_error)﹜／Δt=﹛﹙current_error - 2</em>last_error﹢prev_error﹚﹜／Δt，可得微分D=Kd*(current_error﹣2*last_error﹢prev_error)。<strong>在系统中加入微分反映系统偏差信号的变化率，能预知偏差变化的趋势，具有超前控制作用，提前处理偏差。</strong></p>
+<p><em><strong>四、引进积分控制？</strong></em><br>
+<img src="https://AlexChan2020.github.io/post-images/1589104737707.jpg" alt="" loading="lazy"><br>
+积分控制可以消除偏差，体现在公式中较容易理解，当前的偏差差经过系数Ki的放大后映射为输出控制量，即I=Ki<em>current_error。P只要前后偏差之差为0，即current_error - last_current=0，则不进行调节，D只要前后偏差变化率为0，即(current_error﹣2</em>last_error﹢prev_error)=0，则不进行调节。而<strong>对于积分只要偏差存在，调节就始终进行，因此积分可以消除误差度，但在在某些情况下，一定范围内的误差是允许的，而如果此时积分调节始终存在，可能会导致系统稳定性下降，如上图，此时可通过弱化积分系数Ki使系统稳定</strong>。</p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://AlexChan2020.github.io/jing-ti-caf-xiao-ying-dao-zhi-pcb-lou-dian/">
+                  <h3 class="post-title">
+                    警惕！CAF效应导致PCB漏电
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7db122ba5d2f1bf5cc69',
+        clientSecret: 'd45b94a1a79da95813b91f9802c2d67215099759',
+        repo: 'AlexChan2020.github.io',
+        owner: 'AlexChan2020',
+        admin: ['AlexChan2020'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
