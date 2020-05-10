@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>煜平的blog</title>
+<title>警惕！CAF效应导致PCB漏电 | 煜平的blog</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -12,14 +12,20 @@
 <link rel="stylesheet" href="https://AlexChan2020.github.io/styles/main.css">
 
 
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
 
-    <meta name="description" content="见微知著，日拱一卒">
-    
+    <meta name="description" content="最近碰到一个PCB漏电的问题，起因是一款低功耗产品，本来整机uA级别的电流，常温老化使用了一段时间后发现其功耗上升，个别样机功耗甚至达到了mA级别。仔细排除了元器件问题，最终发现了一个5V电压点，在产品休眠的状态下本该为0V，然而其竟然有1..." />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div id="app" class="main">
@@ -89,17 +95,12 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://AlexChan2020.github.io/jing-ti-caf-xiao-ying-dao-zhi-pcb-lou-dian/">
-                  <h2 class="post-title">警惕！CAF效应导致PCB漏电</h2>
-                </a>
-                <div class="post-date">
-                  2020-05-10
-                </div>
-                <div class="post-abstract">
-                  <p>最近碰到一个PCB漏电的问题，起因是一款低功耗产品，本来整机uA级别的电流，常温老化使用了一段时间后发现其功耗上升，个别样机功耗甚至达到了mA级别。仔细排除了元器件问题，最终发现了一个5V电压点，在产品休眠的状态下本该为0V，然而其竟然有1.8V左右的压降！耐心地切割PCB线路，惊讶地发现PCB上的两个毫无电气连接的过孔竟然可以测试到相互间几百欧姆的阻值。查看该设计原稿，两层板，过孔间距焊盘间距&gt;6mil，孔壁间距&gt;18mil，这样的设计在PCB行业中实属普通的钻孔工艺。洗去油墨，排除油墨或孔表层的杂质导电问题，实测过孔间阻值依然存在！百思不得其解一段时间后，才发现原来是“<strong>CAF效应</strong>”导致的漏电问题！<br>
+          <div class="post-detail">
+            <h2 class="post-title">警惕！CAF效应导致PCB漏电</h2>
+            <div class="post-date">2020-05-10</div>
+            
+            <div class="post-content" v-pre>
+              <p>最近碰到一个PCB漏电的问题，起因是一款低功耗产品，本来整机uA级别的电流，常温老化使用了一段时间后发现其功耗上升，个别样机功耗甚至达到了mA级别。仔细排除了元器件问题，最终发现了一个5V电压点，在产品休眠的状态下本该为0V，然而其竟然有1.8V左右的压降！耐心地切割PCB线路，惊讶地发现PCB上的两个毫无电气连接的过孔竟然可以测试到相互间几百欧姆的阻值。查看该设计原稿，两层板，过孔间距焊盘间距&gt;6mil，孔壁间距&gt;18mil，这样的设计在PCB行业中实属普通的钻孔工艺。洗去油墨，排除油墨或孔表层的杂质导电问题，实测过孔间阻值依然存在！百思不得其解一段时间后，才发现原来是“<strong>CAF效应</strong>”导致的漏电问题！<br>
 <img src="https://AlexChan2020.github.io/post-images/1589102646002.jpg" alt="" loading="lazy"></p>
 <p><strong>什么是CAF效应：</strong><br>
 CAF，全称为导电性阳极丝(CAF：Conductive Anodic Filamentation)， 指的是PCB内部铜离子从阳极（高电压）沿着玻纤丝间的微裂通道，向阴极（低电压）迁移过程中发生的铜与铜盐的漏电行为。<br>
@@ -129,17 +130,37 @@ Cu2++2e– → Cu<br>
 <img src="https://AlexChan2020.github.io/post-images/1589102727170.jpg" alt="" loading="lazy"></p>
 <p><em><strong>4. 对PCBA进行表面清洁处理</strong></em>，例如使用高压气枪进行灰尘清理，避免杂质残留导致不必要的杂质发生电解。另外，在PCBA表面涂覆三防漆，避免水汽的侵入，特别是在高温高湿的地理环境。<br>
 <img src="https://AlexChan2020.github.io/post-images/1589102734842.jpg" alt="" loading="lazy"></p>
+<!-- more -->
+<p>对于这个CAF问题导致的漏电问题，从一开始的困扰到后面的豁然开朗，这其中有两点让我有了更深的体会：<br>
+<em><strong>1. 对于一个bug现象的存在，当自己感到不可思议时，也请保持一种客观的态度面对</strong></em>，因为当前现象与已有认知的相去甚远，很可能只是你的知识体系里有盲区而已。碰到CAF现象时，我向PCB产商抛出“相互绝缘的过孔间为什么会有阻值存在”的问题，产商也觉得不可思议，但对方基于“自己做了几十年的板子也没有客户反应过这个问题”的经验性思维，始终没能客观地面对这个问题的存在，在这个前提下，即使有再好的配合力度，所谓的验证也就只能停留在了自证自己材料、制程属于行业规范的层面上，但CAF对于目前PCB行业来说本来就是一个无法100%规避的问题。由此迫使我找第三方的厂家进行剖片分析，显而易见地看到孔间的铜后，该问题才有了不容反驳的定论；<br>
+<em><strong>2. 应用端的电子工程师，对电子器件的认知，除了能用、会用的能力之外，还要对其基础材料有所认知</strong></em>。如同每天都在和电容、电阻、电感等器件打交道，但对于这些器件的制作工艺、基础材料组成却是有很多人都不自知的，而这正是这些器件电气特性的根本所在。例如在不同工作频率特性下，一个电容为什么会有阻性、感性、容性的成分所在；又或者一个铝电解电容反接为什么会爆浆，在反接电压未知的情况下，一定会爆浆吗？关于这些问题，后续我会整理出来进行记录、分享~</p>
+<p><strong>本文参考文献传送门：</strong><br>
+http://www.anytesting.com/news/543325.html<br>
+《PCB漏电流失效案例分析》<br>
+http://www.edadoc.com/cn/TechnICalArticle/Show.aspx?id=1239<br>
+《谈谈钻孔间距对产品可靠性的影响》<br>
+https://mp.ofweek.com/ee/a345673623826<br>
+《印制电路板CAF失效研究》<br>
+http://www.researchmfg.com/2014/12/caf/<br>
+《电路板内微短路现象》<br>
+https://www.researchmfg.com/2015/08/caf-cause-solution/<br>
+《CAF形成的原因及改善对策》<br>
+http://www.researchmfg.com/2016/06/3d-x-ray-ct/<br>
+《3D X-Ray CT非破坏性立体扫描分析PCBA不良》</p>
 
-                </div>
-              </div>
+            </div>
+            
+            
+
+            
               
-            </article>
-          
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
 
-          <div class="pagination-container">
-  
-  
-</div>
+              
+            
+
+          </div>
 
         </div>
       </div>
@@ -160,6 +181,29 @@ var app = new Vue({
 </script>
 
 
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '7db122ba5d2f1bf5cc69',
+        clientSecret: 'd45b94a1a79da95813b91f9802c2d67215099759',
+        repo: 'AlexChan2020.github.io',
+        owner: 'AlexChan2020',
+        admin: ['AlexChan2020'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 
