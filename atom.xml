@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AlexChan2020.github.io</id>
-    <title>Gridea</title>
-    <updated>2020-05-10T08:39:51.291Z</updated>
+    <title>煜平的blog</title>
+    <updated>2020-05-10T08:47:39.947Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AlexChan2020.github.io"/>
     <link rel="self" href="https://AlexChan2020.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>见微知著，日拱一卒</subtitle>
     <logo>https://AlexChan2020.github.io/images/avatar.png</logo>
     <icon>https://AlexChan2020.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
+    <rights>All rights reserved 2020, 煜平的blog</rights>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://AlexChan2020.github.io/post/hello-gridea/</id>
