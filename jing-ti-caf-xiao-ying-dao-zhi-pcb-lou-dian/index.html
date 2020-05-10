@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://AlexChan2020.github.io/favicon.ico?v=1589104829671">
+<link rel="shortcut icon" href="https://AlexChan2020.github.io/favicon.ico?v=1589105183181">
 <link rel="stylesheet" href="https://AlexChan2020.github.io/styles/main.css">
 
 
@@ -24,8 +24,9 @@
 
 
 
-    <meta name="description" content="最近碰到一个PCB漏电的问题，起因是一款低功耗产品，本来整机uA级别的电流，常温老化使用了一段时间后发现其功耗上升，个别样机功耗甚至达到了mA级别。仔细排除了元器件问题，最终发现了一个5V电压点，在产品休眠的状态下本该为0V，然而其竟然有1..." />
-    <meta name="keywords" content="" />
+    <meta name="description" content="
+最近碰到一个PCB漏电的问题，起因是一款低功耗产品，本来整机uA级别的电流，常温老化使用了一段时间后发现其功耗上升，个别样机功耗甚至达到了mA级别。仔细排除了元器件问题，最终发现了一个5V电压点，在产品休眠的状态下本该为0V，然而其竟然有..." />
+    <meta name="keywords" content="PCB" />
   </head>
   <body>
     <div id="app" class="main">
@@ -34,7 +35,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://AlexChan2020.github.io">
-        <img src="https://AlexChan2020.github.io/images/avatar.png?v=1589104829671" class="site-logo">
+        <img src="https://AlexChan2020.github.io/images/avatar.png?v=1589105183181" class="site-logo">
         <h1 class="site-title">煜平的blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -99,8 +100,13 @@
             <h2 class="post-title">警惕！CAF效应导致PCB漏电</h2>
             <div class="post-date">2020-05-10</div>
             
+              <div class="feature-container" style="background-image: url('https://AlexChan2020.github.io/post-images/jing-ti-caf-xiao-ying-dao-zhi-pcb-lou-dian.jpg')">
+              </div>
+            
             <div class="post-content" v-pre>
-              <p>最近碰到一个PCB漏电的问题，起因是一款低功耗产品，本来整机uA级别的电流，常温老化使用了一段时间后发现其功耗上升，个别样机功耗甚至达到了mA级别。仔细排除了元器件问题，最终发现了一个5V电压点，在产品休眠的状态下本该为0V，然而其竟然有1.8V左右的压降！耐心地切割PCB线路，惊讶地发现PCB上的两个毫无电气连接的过孔竟然可以测试到相互间几百欧姆的阻值。查看该设计原稿，两层板，过孔间距焊盘间距&gt;6mil，孔壁间距&gt;18mil，这样的设计在PCB行业中实属普通的钻孔工艺。洗去油墨，排除油墨或孔表层的杂质导电问题，实测过孔间阻值依然存在！百思不得其解一段时间后，才发现原来是“<strong>CAF效应</strong>”导致的漏电问题！<br>
+              <!--CAF，全称为导电性阳极丝(CAF：Conductive Anodic Filamentation)， 指的是PCB内部铜离子从阳极（高电压）沿着玻纤丝间的微裂通道，向阴极（低电压）迁移过程中发生的铜与铜盐的漏电行为。
+ -->
+<p>最近碰到一个PCB漏电的问题，起因是一款低功耗产品，本来整机uA级别的电流，常温老化使用了一段时间后发现其功耗上升，个别样机功耗甚至达到了mA级别。仔细排除了元器件问题，最终发现了一个5V电压点，在产品休眠的状态下本该为0V，然而其竟然有1.8V左右的压降！耐心地切割PCB线路，惊讶地发现PCB上的两个毫无电气连接的过孔竟然可以测试到相互间几百欧姆的阻值。查看该设计原稿，两层板，过孔间距焊盘间距&gt;6mil，孔壁间距&gt;18mil，这样的设计在PCB行业中实属普通的钻孔工艺。洗去油墨，排除油墨或孔表层的杂质导电问题，实测过孔间阻值依然存在！百思不得其解一段时间后，才发现原来是“<strong>CAF效应</strong>”导致的漏电问题！<br>
 <img src="https://AlexChan2020.github.io/post-images/1589102646002.jpg" alt="" loading="lazy"></p>
 <p><strong>什么是CAF效应：</strong><br>
 CAF，全称为导电性阳极丝(CAF：Conductive Anodic Filamentation)， 指的是PCB内部铜离子从阳极（高电压）沿着玻纤丝间的微裂通道，向阴极（低电压）迁移过程中发生的铜与铜盐的漏电行为。<br>
@@ -149,6 +155,14 @@ http://www.researchmfg.com/2016/06/3d-x-ray-ct/<br>
 《3D X-Ray CT非破坏性立体扫描分析PCBA不良》</p>
 
             </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://AlexChan2020.github.io/GU99-ixQm/" class="tag">
+                    PCB
+                  </a>
+                
+              </div>
             
             
 

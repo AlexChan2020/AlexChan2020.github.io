@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://AlexChan2020.github.io/favicon.ico?v=1589104829671">
+<link rel="shortcut icon" href="https://AlexChan2020.github.io/favicon.ico?v=1589105183181">
 <link rel="stylesheet" href="https://AlexChan2020.github.io/styles/main.css">
 
 
@@ -25,9 +25,9 @@
 
 
     <meta name="description" content="
-一开始见到PID计算公式时总会问“为什么是这样子的一道公式”，为了理解那几道公式，当时将其未简化前的公式活生生地算了一遍，现在想来，这样的演算过程固然有助于理解，但假如一开始就带着对疑问的答案已有一定抽象了解后再进行演算则会理解的更快！
-..." />
-    <meta name="keywords" content="" />
+
+一开始见到PID计算公式时总会问“为什么是这样子的一道公式”，为了理解那几道公式，当时将其未简化前的公式活生生地算了一遍，现在想来，这样的演算过程固然有助于理解，但假如一开始就带着对疑问的答案已有一定抽象了解后再进行演算则会理解的更快！..." />
+    <meta name="keywords" content="算法" />
   </head>
   <body>
     <div id="app" class="main">
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://AlexChan2020.github.io">
-        <img src="https://AlexChan2020.github.io/images/avatar.png?v=1589104829671" class="site-logo">
+        <img src="https://AlexChan2020.github.io/images/avatar.png?v=1589105183181" class="site-logo">
         <h1 class="site-title">煜平的blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -101,8 +101,13 @@
             <h2 class="post-title">增量式PID公式的4点疑问和理解</h2>
             <div class="post-date">2020-05-10</div>
             
+              <div class="feature-container" style="background-image: url('https://AlexChan2020.github.io/post-images/qeyEq9Dq7.jpg')">
+              </div>
+            
             <div class="post-content" v-pre>
-              <p><img src="https://AlexChan2020.github.io/post-images/1589104505228.jpg" alt="" loading="lazy"><br>
+              <!-- 一开始见到PID计算公式时总会问“为什么是这样子的一道公式”，为了理解那几道公式，当时将其未简化前的公式活生生地算了一遍，现在想来，这样的演算过程固然有助于理解，但假如一开始就带着对疑问的答案已有一定抽象了解后再进行演算则会理解的更快！
+ -->
+<p><img src="https://AlexChan2020.github.io/post-images/1589104505228.jpg" alt="" loading="lazy"><br>
 一开始见到PID计算公式时总会问“为什么是这样子的一道公式”，为了理解那几道公式，当时将其未简化前的公式活生生地算了一遍，现在想来，这样的演算过程固然有助于理解，但假如一开始就带着对疑问的答案已有一定抽象了解后再进行演算则会理解的更快！</p>
 <p>首先推荐白志刚的**《由入门到精通—吃透PID 2.0版》**看完一、二章之后，建议你先通过实践练习然后再去看书里接下来的其他章节，这样你对这本书的掌握会更加高效。</p>
 <p><strong>PID就是对输入偏差进行比例积分微分运算，然后将运算的叠加结果去控制执行机构。实践练习中，如何把这一原理转化为程序？为什么是用那几个error进行计算?</strong></p>
@@ -137,6 +142,14 @@ PID中纯比例控制就是把被控制量的偏差乘以一个系数作为调�
 积分控制可以消除偏差，体现在公式中较容易理解，当前的偏差差经过系数Ki的放大后映射为输出控制量，即I=Ki<em>current_error。P只要前后偏差之差为0，即current_error - last_current=0，则不进行调节，D只要前后偏差变化率为0，即(current_error﹣2</em>last_error﹢prev_error)=0，则不进行调节。而<strong>对于积分只要偏差存在，调节就始终进行，因此积分可以消除误差度，但在在某些情况下，一定范围内的误差是允许的，而如果此时积分调节始终存在，可能会导致系统稳定性下降，如上图，此时可通过弱化积分系数Ki使系统稳定</strong>。</p>
 
             </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://AlexChan2020.github.io/lln7bBksc/" class="tag">
+                    算法
+                  </a>
+                
+              </div>
             
             
               <div class="next-post">

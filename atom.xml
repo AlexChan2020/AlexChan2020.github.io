@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AlexChan2020.github.io</id>
     <title>煜平的blog</title>
-    <updated>2020-05-10T10:00:37.208Z</updated>
+    <updated>2020-05-10T10:06:27.855Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AlexChan2020.github.io"/>
     <link rel="self" href="https://AlexChan2020.github.io/atom.xml"/>
@@ -23,7 +23,9 @@
         <link href="https://AlexChan2020.github.io/jing-ti-caf-xiao-ying-dao-zhi-pcb-lou-dian/">
         </link>
         <updated>2020-05-10T09:22:14.000Z</updated>
-        <summary type="html"><![CDATA[<p>最近碰到一个PCB漏电的问题，起因是一款低功耗产品，本来整机uA级别的电流，常温老化使用了一段时间后发现其功耗上升，个别样机功耗甚至达到了mA级别。仔细排除了元器件问题，最终发现了一个5V电压点，在产品休眠的状态下本该为0V，然而其竟然有1.8V左右的压降！耐心地切割PCB线路，惊讶地发现PCB上的两个毫无电气连接的过孔竟然可以测试到相互间几百欧姆的阻值。查看该设计原稿，两层板，过孔间距焊盘间距&gt;6mil，孔壁间距&gt;18mil，这样的设计在PCB行业中实属普通的钻孔工艺。洗去油墨，排除油墨或孔表层的杂质导电问题，实测过孔间阻值依然存在！百思不得其解一段时间后，才发现原来是“<strong>CAF效应</strong>”导致的漏电问题！<br>
+        <summary type="html"><![CDATA[<!--CAF，全称为导电性阳极丝(CAF：Conductive Anodic Filamentation)， 指的是PCB内部铜离子从阳极（高电压）沿着玻纤丝间的微裂通道，向阴极（低电压）迁移过程中发生的铜与铜盐的漏电行为。
+ -->
+<p>最近碰到一个PCB漏电的问题，起因是一款低功耗产品，本来整机uA级别的电流，常温老化使用了一段时间后发现其功耗上升，个别样机功耗甚至达到了mA级别。仔细排除了元器件问题，最终发现了一个5V电压点，在产品休眠的状态下本该为0V，然而其竟然有1.8V左右的压降！耐心地切割PCB线路，惊讶地发现PCB上的两个毫无电气连接的过孔竟然可以测试到相互间几百欧姆的阻值。查看该设计原稿，两层板，过孔间距焊盘间距&gt;6mil，孔壁间距&gt;18mil，这样的设计在PCB行业中实属普通的钻孔工艺。洗去油墨，排除油墨或孔表层的杂质导电问题，实测过孔间阻值依然存在！百思不得其解一段时间后，才发现原来是“<strong>CAF效应</strong>”导致的漏电问题！<br>
 <img src="https://AlexChan2020.github.io/post-images/1589102646002.jpg" alt="" loading="lazy"></p>
 <p><strong>什么是CAF效应：</strong><br>
 CAF，全称为导电性阳极丝(CAF：Conductive Anodic Filamentation)， 指的是PCB内部铜离子从阳极（高电压）沿着玻纤丝间的微裂通道，向阴极（低电压）迁移过程中发生的铜与铜盐的漏电行为。<br>
@@ -54,7 +56,9 @@ Cu2++2e– → Cu<br>
 <p><em><strong>4. 对PCBA进行表面清洁处理</strong></em>，例如使用高压气枪进行灰尘清理，避免杂质残留导致不必要的杂质发生电解。另外，在PCBA表面涂覆三防漆，避免水汽的侵入，特别是在高温高湿的地理环境。<br>
 <img src="https://AlexChan2020.github.io/post-images/1589102734842.jpg" alt="" loading="lazy"></p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>最近碰到一个PCB漏电的问题，起因是一款低功耗产品，本来整机uA级别的电流，常温老化使用了一段时间后发现其功耗上升，个别样机功耗甚至达到了mA级别。仔细排除了元器件问题，最终发现了一个5V电压点，在产品休眠的状态下本该为0V，然而其竟然有1.8V左右的压降！耐心地切割PCB线路，惊讶地发现PCB上的两个毫无电气连接的过孔竟然可以测试到相互间几百欧姆的阻值。查看该设计原稿，两层板，过孔间距焊盘间距&gt;6mil，孔壁间距&gt;18mil，这样的设计在PCB行业中实属普通的钻孔工艺。洗去油墨，排除油墨或孔表层的杂质导电问题，实测过孔间阻值依然存在！百思不得其解一段时间后，才发现原来是“<strong>CAF效应</strong>”导致的漏电问题！<br>
+        <content type="html"><![CDATA[<!--CAF，全称为导电性阳极丝(CAF：Conductive Anodic Filamentation)， 指的是PCB内部铜离子从阳极（高电压）沿着玻纤丝间的微裂通道，向阴极（低电压）迁移过程中发生的铜与铜盐的漏电行为。
+ -->
+<p>最近碰到一个PCB漏电的问题，起因是一款低功耗产品，本来整机uA级别的电流，常温老化使用了一段时间后发现其功耗上升，个别样机功耗甚至达到了mA级别。仔细排除了元器件问题，最终发现了一个5V电压点，在产品休眠的状态下本该为0V，然而其竟然有1.8V左右的压降！耐心地切割PCB线路，惊讶地发现PCB上的两个毫无电气连接的过孔竟然可以测试到相互间几百欧姆的阻值。查看该设计原稿，两层板，过孔间距焊盘间距&gt;6mil，孔壁间距&gt;18mil，这样的设计在PCB行业中实属普通的钻孔工艺。洗去油墨，排除油墨或孔表层的杂质导电问题，实测过孔间阻值依然存在！百思不得其解一段时间后，才发现原来是“<strong>CAF效应</strong>”导致的漏电问题！<br>
 <img src="https://AlexChan2020.github.io/post-images/1589102646002.jpg" alt="" loading="lazy"></p>
 <p><strong>什么是CAF效应：</strong><br>
 CAF，全称为导电性阳极丝(CAF：Conductive Anodic Filamentation)， 指的是PCB内部铜离子从阳极（高电压）沿着玻纤丝间的微裂通道，向阴极（低电压）迁移过程中发生的铜与铜盐的漏电行为。<br>
