@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AlexChan2020.github.io</id>
     <title>煜平的blog</title>
-    <updated>2020-05-10T10:09:03.580Z</updated>
+    <updated>2020-05-10T10:16:49.647Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AlexChan2020.github.io"/>
     <link rel="self" href="https://AlexChan2020.github.io/atom.xml"/>
@@ -12,15 +12,15 @@
     <rights>All rights reserved 2020, 煜平的blog</rights>
     <entry>
         <title type="html"><![CDATA[增量式PID公式的4点疑问和理解]]></title>
-        <id>https://AlexChan2020.github.io/qeyEq9Dq7/</id>
-        <link href="https://AlexChan2020.github.io/qeyEq9Dq7/">
+        <id>https://AlexChan2020.github.io/post/qeyEq9Dq7/</id>
+        <link href="https://AlexChan2020.github.io/post/qeyEq9Dq7/">
         </link>
         <updated>2020-05-10T09:44:28.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[警惕！CAF效应导致PCB漏电]]></title>
-        <id>https://AlexChan2020.github.io/jing-ti-caf-xiao-ying-dao-zhi-pcb-lou-dian/</id>
-        <link href="https://AlexChan2020.github.io/jing-ti-caf-xiao-ying-dao-zhi-pcb-lou-dian/">
+        <id>https://AlexChan2020.github.io/post/jing-ti-caf-xiao-ying-dao-zhi-pcb-lou-dian/</id>
+        <link href="https://AlexChan2020.github.io/post/jing-ti-caf-xiao-ying-dao-zhi-pcb-lou-dian/">
         </link>
         <updated>2020-05-10T09:22:14.000Z</updated>
         <summary type="html"><![CDATA[<!--CAF，全称为导电性阳极丝(CAF：Conductive Anodic Filamentation)， 指的是PCB内部铜离子从阳极（高电压）沿着玻纤丝间的微裂通道，向阴极（低电压）迁移过程中发生的铜与铜盐的漏电行为。
